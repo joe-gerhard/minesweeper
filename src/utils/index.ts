@@ -1,6 +1,7 @@
 export type Cell = {
     hasMine: boolean;
     isVisible: boolean;
+    isFlagged: boolean;
     neighborMines: number;
     x: number;
     y: number;
@@ -32,7 +33,33 @@ export const calculateNeighborMines = (gameState: Cell[][], cell: Cell): number 
     return neighborMines;
 }
 
-export const createGameState = (width: number, height: number, mines: number): Cell[][] => {
+export const showNeighbors = (gameState: Cell[][], cell: Cell) => {
+    const neighborsArr: Cell[] = getNeighbors(gameState, cell)
+
+    // check if any neightbors have a mine
+    let nearbyMine = false;
+
+    neighborsArr.forEach(neighbor => {
+        if(neighbor.hasMine) nearbyMine = true;
+    })
+    
+    // set to visible all neighbor cells that dont have mines
+    if(!nearbyMine) {
+        neighborsArr.forEach(neighbor => {
+            if(neighbor.neighborMines === 0 && !neighbor.isVisible && !neighbor.hasMine) {
+                neighbor.isVisible = true;
+                showNeighbors(gameState, neighbor)
+            }
+            else if(!neighbor.hasMine && !neighbor.isVisible) {
+                neighbor.isVisible = true;
+            }
+           
+        })
+    }
+
+}
+
+export const createGameBoardState = (width: number, height: number, mines: number): Cell[][] => {
 
     const state: Cell[][] = new Array(height);
     const totalCells: number = width * height;    
@@ -47,6 +74,7 @@ export const createGameState = (width: number, height: number, mines: number): C
                 state[x][y] = {
                     hasMine: true,
                     isVisible: false,
+                    isFlagged: false,
                     neighborMines: 0,
                     x,
                     y,
@@ -56,6 +84,7 @@ export const createGameState = (width: number, height: number, mines: number): C
                 state[x][y] = {
                     hasMine: false,
                     isVisible: false,
+                    isFlagged: false,
                     neighborMines: 0,
                     x,
                     y,
@@ -70,4 +99,20 @@ export const createGameState = (width: number, height: number, mines: number): C
     }))
 
     return state;
+}
+
+export const isWinConditionMet = (gameBoardState: Cell[][]): boolean => {
+    let hasWon = true;
+
+    gameBoardState.forEach(row => row.forEach((cell: Cell) => {
+        if(!cell.hasMine && !cell.isVisible) hasWon = false;
+    }))
+
+    return hasWon;
+}
+
+export const revealGameBoard = (gameBoardState: Cell[][]): void => {
+    gameBoardState.forEach(row => row.forEach((cell: Cell) => {
+        cell.isVisible = true;
+    }))
 }
