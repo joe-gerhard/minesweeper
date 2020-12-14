@@ -1,11 +1,4 @@
-export type Cell = {
-    hasMine: boolean;
-    isVisible: boolean;
-    isFlagged: boolean;
-    neighborMines: number;
-    x: number;
-    y: number;
-}
+import { Cell } from "../@types";
 
 export const getNeighbors = (gameState: Cell[][], cell: Cell): Cell[] => {
     let neighbors: Cell[] = [];

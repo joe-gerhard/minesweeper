@@ -2,10 +2,10 @@ import React, { Dispatch, useCallback } from 'react'
 import { Styled } from './styles';
 import CellSquare from './CellSquare';
 import ControlsBar from './ControlsBar';
-import { Cell } from '../../utils';
 import { useSelector, useDispatch } from 'react-redux';
 import { AppState } from '../../redux/reducers/rootReducer';
 import { GameBoardActions } from '../../redux/actions/GameBoardActions';
+import { Cell } from '../../@types';
 
 const GameBoard: React.FC = () => {
     const { width, height, cells: gameBoardState, headerText } = useSelector((state: AppState) => state.gameBoard)

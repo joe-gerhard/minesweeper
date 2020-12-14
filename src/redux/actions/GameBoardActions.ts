@@ -1,5 +1,5 @@
+import { Cell } from "../../@types";
 import { GameState } from "../reducers/gameBoardReducer";
-import { Cell } from "../../utils";
 
 interface ICreateNewGameBoardAction {
     readonly type: "CREATE_NEW_GAME_BOARD",

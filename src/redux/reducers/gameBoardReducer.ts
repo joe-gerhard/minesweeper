@@ -1,6 +1,7 @@
 import _ from 'lodash';
 import { GameBoardActions } from '../actions/GameBoardActions';
-import { Cell, createGameBoardState, revealGameBoard, showNeighbors, isWinConditionMet } from '../../utils';
+import { createGameBoardState, revealGameBoard, showNeighbors, isWinConditionMet } from '../../utils';
+import { Cell } from '../../@types';
 
 export enum GameState {
     Start,

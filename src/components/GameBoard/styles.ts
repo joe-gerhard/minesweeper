@@ -1,15 +1,13 @@
 import styled, { css } from 'styled-components';
-import { Cell } from '../../utils';
-import { Theme } from '../../styles/theme';
 import tinygradient from 'tinygradient';
 import tinycolor from 'tinycolor2';
+import { Cell, PropsWithTheme } from '../../@types';
 
 const cellWidth: number = 30;
 
-type GameBoardProps = {
+interface GameBoardProps extends PropsWithTheme {
     width: number;
     height: number;
-    theme: Theme;
 }
 
 const GameBoard = styled.div(({width, height, theme}: GameBoardProps) => css`
@@ -25,9 +23,8 @@ const GameBoard = styled.div(({width, height, theme}: GameBoardProps) => css`
     }
 `);
 
-type CellSquareProps = {
+interface CellSquareProps extends PropsWithTheme {
     cell: Cell;
-    theme: Theme;
 }
 
 const CellSquare = styled.div(({ cell, theme }: CellSquareProps) => {
@@ -65,11 +62,7 @@ const CellSquare = styled.div(({ cell, theme }: CellSquareProps) => {
     }
 `});
 
-type ButtonProps = {
-    theme: Theme,
-}
-
-const Button = styled.button(({ theme }: ButtonProps) => css`
+const Button = styled.button(({ theme }: PropsWithTheme) => css`
     margin: 0 auto;
     border: 1px solid ${theme.darkGrey};
     border-radius: 0;
@@ -93,11 +86,7 @@ const Button = styled.button(({ theme }: ButtonProps) => css`
     }
 `);
 
-type ContainerProps = {
-    theme: Theme,
-}
-
-const Container = styled.div(({ theme }: ContainerProps) => css`
+const Container = styled.div(({ theme }: PropsWithTheme) => css`
     margin-top: 20px;
     display: flex;
     flex-direction: column;
@@ -113,22 +102,14 @@ const Container = styled.div(({ theme }: ContainerProps) => css`
     }
 `);
 
-type ControlsBarProps = {
-    theme: Theme,
-}
-
-const ControlsBar = styled.div(({ theme }: ControlsBarProps) => css`
+const ControlsBar = styled.div(({ theme }: PropsWithTheme) => css`
     width: 100%;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     margin-bottom: 20px;
 `);
 
-type MinesDisplayProps = {
-    theme: Theme,
-}
-
-const MinesDisplay = styled.div(({ theme }: MinesDisplayProps) => css`
+const MinesDisplay = styled.div(({ theme }: PropsWithTheme) => css`
     display: flex;
     justify-content: center;
     align-items: center;
@@ -142,11 +123,7 @@ const MinesDisplay = styled.div(({ theme }: MinesDisplayProps) => css`
     font-size: 14px;
 `)
 
-type TimerDisplayProps = {
-    theme: Theme,
-}
-
-const Timer = styled.div(({ theme }: MinesDisplayProps) => css`
+const Timer = styled.div(({ theme }: PropsWithTheme) => css`
     display: flex;
     justify-content: center;
     align-items: center;

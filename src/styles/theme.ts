@@ -1,14 +1,4 @@
-export type Theme = {
-    primary: string;
-    secondary: string;
-    highlight: string;
-    warn: string;
-    light: string;
-    lightGrey: string;
-    grey: string;
-    darkGrey: string;
-    dark: string;
-}
+import { Theme } from "../@types";
 
 export const theme: Theme = {
     primary: "#537D8D",

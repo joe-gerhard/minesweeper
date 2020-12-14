@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux'
 import { AppState } from '../../redux/reducers/rootReducer'
 import { GameState } from '../../redux/reducers/gameBoardReducer'
 
-const Timer = () => {
+const Timer: React.FC = () => {
     const { gameState } = useSelector((state: AppState) => state.gameBoard)
     const [ seconds, setSeconds ] = useState<number>(0); 
     

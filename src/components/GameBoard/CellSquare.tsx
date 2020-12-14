@@ -1,7 +1,7 @@
 import React from 'react'
 import { Styled } from './styles'
 
-type CellSquareProps = {
+interface CellSquareProps {
     isVisible: boolean,
     isFlagged: boolean,
     hasMine: boolean,
